@@ -25,5 +25,5 @@ Superconducting Quantum Chip Painter
 - - -
 
 - **Start Page**  
-- [脚本绘图基础](base.md)  
+- [脚本绘图](base.md)  
 - [demo](demo.md)  

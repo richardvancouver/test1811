@@ -1,10 +1,13 @@
-# 脚本绘图基础
+# Threads
 
 KLayout提供了库pya作为python绘图的API, sqc-painter用paintlib进行了部分封装, 仍需对pya有一定了解
 
-## pya和paintlib
+## Thread1: Python coding
 
-**pya** 是KLayout提供的绘图接口,在脚本界面点击![](img_md/2018-04-15-17-15-21.png)可以打开其帮助文档
+%**pya** 是KLayout提供的绘图接口,在脚本界面点击![](img_md/2018-04-15-17-15-21.png)可以打开其帮助文档
+import testrectanglee as tt 还差topological sorting和修正一些bug就彻底完成了。基本完成。paintlib也看了几遍了。廖雪峰和python学习手册也看了，基本掌握了类；网页学习还在仿照UV的github code展开  python:  
+
+
 
 ![](img_md/2018-04-15-17-16-14.png)
 
@@ -17,8 +20,9 @@ KLayout提供了库pya作为python绘图的API, sqc-painter用paintlib进行了�
 + TransfilePainter : 用来导入已有gds的类
 + IO : 处理输入输出的静态类
 
-## layout, cell和layer
-
+## Thread2: microwave simulation
+Sank filter仿好了 yarui 24bit:C:\Users\Rui\Desktop\layouts\20bits\yarui    半波长滤波器也基本仿好了：  above set the same Qf for left and right quarter-wavelength section  用语和Sank P110一样，估计strong couple那个还是电容耦合，Cin, Qin
+还差微调端口的半波长滤波器和Wallraff每个腔挂一个的版本，参考zql的版本  以后还可以仿仿微波脉冲打进来后芯片的瞬态反应 https://ldrd-annual.llnl.gov/ldrd-annual-2017/cyber/15-ERD-051
 KLayout中,一个gds文件对应一个Layout,其中的图形放置在cell构成的树结构中  
 每个图形自身有layer属性  
 
@@ -30,7 +34,7 @@ KLayout中,一个gds文件对应一个Layout,其中的图形放置在cell构成�
 
 `top.insert(pya.CellInstArray(cell1.cell_index(),pya.Trans()))` 把cell插入到另一个cell中
 
-## 作图精度
+## Thread3: nanofabrication
 
 `layout.dbu = 0.001` 设置单位长度为1nm
 
@@ -45,7 +49,7 @@ pya中涉及到具体图形的class分成了两大类:
 为了保证生成gds的精度,在绘图过程中,以浮点数的形式进行运算,直到把图形画出的最后时刻,再转换成整数来储存  
 把图形放置到cell中时,或者利用Region进行减法运算时,也需要转成整数的形式
 
-## pya中部分class及其方法
+## Thread4: quantum computation
 
 ### DPoint  
 基础图形:点,用来构成有面积的图形  
@@ -80,7 +84,7 @@ pya中涉及到具体图形的class分成了两大类:
 + 方法`region=region1-region2`产生两个区域的差作为新区域  
 + 方法`region=region1+region2`产生两个区域的和作为新区域  
 
-## paintlib中部分class及其方法
+## Thread5: quantum simulation
 
 ### BasicPainter  
 用于画基础图形的静态类,不需要产生实例,以`paintlib.BasicPainter.func()`的形式直接执行其方法  
